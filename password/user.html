@@ -3,8 +3,99 @@
   <head>
     <title> </title>
   </head>
+
   <body>
-    <h1>This is a Heading</h1>
-    <p>This is a paragraph.</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <form id="myform">
+      <fieldset
+        style="
+          margin-left: 370px;
+          margin-top: 70px;
+          width: 400px;
+          height: 175px;
+        "
+      >
+        <legend>MeeWee</legend>
+
+        <table>
+          <tr style="height: 80px;">
+            <td style="width: 150px;">
+              <label>Password</label>
+            </td>
+            <td style="color: rgb(194, 22, 22);">
+              <input
+                type="password"
+                id="txtNewPassword"
+                name="pass"
+                minlength="6"
+                required
+                title=" Minimum 6 Characters"
+                id="field"
+                name="field"
+                required
+              />
+            </td>
+          </tr>
+
+          <tr style="height: 30px;">
+            <td>
+              <label> Confirm Password</label>
+            </td>
+            <td>
+              <input
+                type="password"
+                id="txtConfirmPassword"
+                name="confpass"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td
+              class="registrationFormAlert"
+              style="color: rgb(194, 22, 22);"
+              id="CheckPasswordMatch"
+            ></td>
+          </tr>
+
+          <tr style="height: 40px;">
+            <td><input type="button" value="Submit" /></td>
+          </tr>
+        </table>
+      </fieldset>
+
+      <script>
+        function checkPasswordMatch() {
+          var password = $("#txtNewPassword").val();
+          var confirmPassword = $("#txtConfirmPassword").val();
+          if (password != confirmPassword)
+            $("#CheckPasswordMatch").html("Passwords does not match!");
+          else $("#CheckPasswordMatch").html("");
+        }
+        $(document).ready(function () {
+          $("#txtConfirmPassword").keyup(checkPasswordMatch);
+        });
+      </script>
+    </form>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script>
+      // just for the demos, avoids form submit
+      jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid",
+      });
+      $("#myform").validate({
+        rules: {
+          field: {
+            required: true,
+            minlength: 6,
+          },
+        },
+      });
+    </script>
   </body>
 </html>
